@@ -6,7 +6,7 @@
 
 1. What is the missing datatype used in pandas?
 
-Ans: np.NaN,empty strings and constants. 
+  Ans. np.NaN,empty strings and constants. 
 
 2. How to replace all occurences of the value 9999 to missing in pandas?
 Ans: Replace the 9999 to np.NaN
