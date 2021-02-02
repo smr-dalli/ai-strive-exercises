@@ -108,7 +108,7 @@ Missing value percentage of Zipcode column is:0.86
 
 Conclusion:
 
-There are a lot of missing values in Street Number Suffix column, There exists few suffix but not recorded.
+There are a lot of missing values in Street Number Suffix column, it does not exists.
 
 They were not recorded in Zipcode column.
 
