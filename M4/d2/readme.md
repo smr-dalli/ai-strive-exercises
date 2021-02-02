@@ -5,75 +5,77 @@
 ### ❓ Missing values
 
 1. What is the missing datatype used in pandas?
-Ans: np.NaN,empty strings and constants. 
+
+   Ans. np.NaN,empty strings and constants. 
 
 2. How to replace all occurences of the value 9999 to missing in pandas?
-Ans: Replace the 9999 to np.NaN
+
+   Ans: Replace the 9999 to np.NaN
 
 3. How to get the absolute number of missings for each variable in pandas?
-Ans: df.column.isna().sum()
+
+   Ans: df.column.isna().sum()
 
 4. How to get the percentage of missings for each variable in pandas?
-Ans: df.column_name.isna().sum() / len(df.column_name)
+
+   Ans: df.column_name.isna().sum() / len(df.column_name)
 
 5. How to drop rows with missing values?
-Ans: 1. Directly drop the rows with missing values. df.dropna(axis = 1)
-     2. Imputation.
-     from Sklearn import impute.SimpleImputer(strategy = ['constant','mean','median','most frequent'])
-     Also, for constant, replace the value with out of feature range such as num: -999,-1,cat: 'missing_value'.
-     3. Using Model such as XGBoost,LightGBM
+
+   Ans:  Directly drop the rows with missing values. df.dropna(axis = 1)
 
 6. How to drop variables with missing values?
-Ans: 1. Directly drop the rows with missing values. df.dropna(axis = 0)
-     2. Imputation.
-     from Sklearn import impute.SimpleImputer(strategy = ['constant','mean','median','most frequent'])
-     Also, for constant, replace the value with out of feature range such as num: -999,-1,cat: 'missing_value'.
-     3. Using Model such as XGBoost,LightGBM
+
+   Ans: 1. Directly drop the rows with missing values. df.dropna(axis = 0)
 
 7. What is the univariate imputation method in sklearn?
-Ans: 1. Imputation.
-     from Sklearn import impute.SimpleImputer(strategy = ['constant','mean','median','most frequent'])
-     Also, for constant, replace the value with out of feature range such as num: -999,-1,cat: 'missing_value'.
-     2. Using Model such as XGBoost,LightGBM
+
+   Ans: 1. Imputation method, from Sklearn import impute.SimpleImputer(strategy = ['constant','mean','median','most frequent']).Also, for constant, replace the value with out of feature range such as num: -999,-1,cat: 'missing_value'.
 
 8. What is the multivariate imputation method in sklearn?
-Ans: In the multivariate, we reconstruct the missing values based on the other variables.
-     In, Scikit learn, we use impute.iterativeImputer() and impute.KNNimputer()
+
+   Ans: In the multivariate, we reconstruct the missing values based on the other variables. In, Scikit learn, we use impute.iterativeImputer() and impute.KNNimputer().
+     
 
 9. What is the best univariate imputation method to categorical variables? (Explain why)
-Ans: Using the strategy, Replace the value with 'missing_value'
+
+   Ans: Using the strategy, Replace the value with 'missing_value'
 
 10. What is the best univariate imputation method to numerical variables? (Explain why)
-Ans: Using the strategy, Replace the misising value with mean.
-     Also, for Tree models, replacing with value that is out of range feature value such as -999,-1.
+
+   Ans: Using the strategy, Replace the misising value with mean. Also, for Tree models, replacing with value that is out of range feature value such as -999,-1.
+     
 
 
 ### 🔎 Outliers
 
 1. What is an outlier?
-Ans: An outlier is a data point that differs significantly from the actual observations. 
+
+   Ans: An outlier is a data point that differs significantly from the actual observations. 
 
 2. What is a simple method to detect and deal with outliers of a numerical variable?
-Ans: We must remove otliers for the model accuracy. Plotting the distribution plot is the efficient method.
+
+   Ans: We must remove otliers for the model accuracy. Plotting the distribution plot is the efficient method.
 
 3. What is novelty detection?
-Ans: Novelty detection is the task of classifying test data that differ in some respect from the data that are
- available during training
+
+   Ans: Novelty detection is the task of classifying test data that differ in some respect from the data that are available during training
+ 
 
 4. Name 4 advanced methods of outlier detection in sklearn.
-Ans: Robust Covariance
-     One Class svm
-     Isolation Forest
-     Local outlier factor
+
+   Ans: Robust Covariance,  One Class svm, Isolation Forest, Local outlier factor.
 
 
 ### 🖋 Typos
 
 1. What is a typo?
-Ans: Errors during the data entry. Detection of the typos and correcting it must be done.
+
+   Ans: Errors during the data entry. Detection of the typos and correcting it must be done.
 
 2. What is a good method of automatically detect typos?
-Ans: Using FuzzyWuzzy that identifies typos automatically and fixes it.
+
+   Ans: Using FuzzyWuzzy that identifies typos automatically and fixes it.
 
 
 
@@ -87,18 +89,27 @@ Consider the following dataset: [San Francisco Building Permits](https://www.kag
 Hint: Do all addresses generally have a street number suffix? Do all addresses generally have a zipcode?
 
 Ans: 
+
 Code:
+
 miss_val = df['Street Number Suffix'].isna().sum() / len(df)
+
 print(f'Missing value percentage of Street Number Suffix column is:{round(miss_val*100,2)}')
+
 missing_val = df['Zipcode'].isna().sum() / len(df)
+
 print(f'Missing value percentage of Zipcode column is:{round(missing_val*100,2)}')
 
 Result: 
+
 Missing value percentage of Street Number Suffix column is:98.89
+
 Missing value percentage of Zipcode column is:0.86
 
 Conclusion:
+
 There are a lot of missing values in Street Number Suffix column, There exists few suffix but not recorded.
+
 They were not recorded in Zipcode column.
 
 
