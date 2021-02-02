@@ -18,7 +18,7 @@
 
 4. How to get the percentage of missings for each variable in pandas?
 
-  Ans: df.column_name.isna().sum() / len(df.column_name)
+   Ans: df.column_name.isna().sum() / len(df.column_name)
 
 5. How to drop rows with missing values?
 
