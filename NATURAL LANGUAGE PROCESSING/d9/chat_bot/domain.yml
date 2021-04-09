@@ -1,0 +1,171 @@
+version: "2.4.X"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - netflix
+  - genre_list
+  - action
+  - anime
+  - children
+  - classic 
+  - comedies 
+  - documentary
+  - dramas 
+  - horror 
+  - music 
+  - romantic 
+  - fantasy
+  - sports 
+  - thrillers 
+  - tv_shows 
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Do you wanna watch a movie to cheer you up?"
+
+  utter_did_that_help:
+  - text: "Did you enjoy?"
+  
+  utter_happy:
+  - text: "Do you wanna watch a movie?"
+  
+  utter_do_you_have_netflix:
+  - text: "Do you use netflix?"
+
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  
+  utter_netflix:
+  - text: "Do you want to see the genre list?"
+  
+  utter_genre_list:
+  - text: "Here are the genre available: Action & Adventure (1365),
+    Anime (7424),
+    Children & Family (783),
+    Classic (31574),
+    Comedies (6548),
+    Documentaries (6839),
+    Dramas (5763),
+    Horror (8711),
+    Music (1701),
+    Romantic (8883),
+    Sci-fi & Fantasy (1492),
+    Sports (4370),
+    Thrillers (8933),
+    TV Shows (83)
+    What do you like to watch?."
+    
+  utter_action:
+  - text: "Here is the recommended movie, Title: 2012"
+  - text: "Here is the recommended movie, Title: 6  Underground"  
+  - text: "Here is the recommended movie, Title: Baahubali (The Beginning and The Conclusion)"
+  - text: "Here is the recommended movie, Title: The Bank Job"
+  - text: "Here is the recommended movie, Title: Beyond Skyline"
+  
+  utter_tv_shows:
+  - text: "Here is the recommended movie, Title: The Simpsons"
+  - text: "Here is the recommended movie, Title: The Twilight Zone"  
+  - text: "Here is the recommended movie, Title: Mad Men"
+  - text: "Here is the recommended movie, Title: Game of Thrones"
+  - text: "Here is the recommended movie, Title: Breaking Bad"
+  
+  utter_anime:
+  - text: "Here is the recommended movie, Title: Death Note"
+  - text: "Here is the recommended movie, Title: Fullmetal Alchemist: Brotherhood"  
+  - text: "Here is the recommended movie, Title: The Promised Neverland"
+  - text: "Here is the recommended movie, Title: GCode Geass: Lelouch of the Rebellion"
+  - text: "Here is the recommended movie, Title: Steins;Gate"
+  
+  utter_children:
+  - text: "Here is the recommended movie, Title: We Can Be Heroes"
+  - text: "Here is the recommended movie, Title: The BFG"  
+  - text: "Here is the recommended movie, Title: Zathura: A Space Adventure"
+  - text: "Here is the recommended movie, Title: Hook"
+  - text: "Here is the recommended movie, Title: Rango"
+  
+  utter_classic:
+  - text: "Here is the recommended movie, Title: Searching For Bobby Fischer"
+  - text: "Here is the recommended movie, Title: Fiddler on the Roof"  
+  - text: "Here is the recommended movie, Title: Enter the Dragon"
+  - text: "Here is the recommended movie, Title: Mad Max"
+  - text: "Here is the recommended movie, Title: Bonnie and Clyde"
+  
+  utter_comedies:
+  - text: "Here is the recommended movie, Title: Julie & Julia"
+  - text: "Here is the recommended movie, Title: The Bling Ring"  
+  - text: "Here is the recommended movie, Title: Hunt for the Wilderpeople"
+  - text: "Here is the recommended movie, Title: My Best Friend's Wedding"
+  - text: "Here is the recommended movie, Title: The Half of It. Netflix"
+  
+  utter_documentary:
+  - text: "Here is the recommended movie, Title: 13th"
+  - text: "Here is the recommended movie, Title: My Octopus Teacher"  
+  - text: "Here is the recommended movie, Title: The Last Dance"
+  - text: "Here is the recommended movie, Title: The Speed Cubers"
+  - text: "Here is the recommended movie, Title: Tiger King: Murder, Mayhem and Madness"
+  
+  utter_drama:
+  - text: "Here is the recommended movie, Title: Mank"
+  - text: "Here is the recommended movie, Title: Nightcrawler"  
+  - text: "Here is the recommended movie, Title: Uncut Gems"
+  - text: "Here is the recommended movie, Title: The Trial of the Chicago 7"
+  - text: "Here is the recommended movie, Title: A Clockwork Orange"
+  
+  utter_horror:
+  - text: "Here is the recommended movie, Title: Hush"
+  - text: "Here is the recommended movie, Title: CAM"  
+  - text: "Here is the recommended movie, Title: Sweetheart"
+  - text: "Here is the recommended movie, Title: The Evil Dead"
+  - text: "Here is the recommended movie, Title: Pan's Labyrinth"
+  
+  utter_music:
+  - text: "Here is the recommended movie, Title: Supersonic"
+  - text: "Here is the recommended movie, Title: ZZ Top - Straight Outta Texas"  
+  - text: "Here is the recommended movie, Title: The Dirt"
+  - text: "Here is the recommended movie, Title: Rush - Beyond The Lighted Stage"
+  - text: "Here is the recommended movie, Title: What Happened Miss Simone?"
+  
+  utter_romantic:
+  - text: "Here is the recommended movie, Title: Love Guaranteed"
+  - text: "Here is the recommended movie, Title: The Kissing Booth 2"  
+  - text: "Here is the recommended movie, Title: To All the Boys: P.S. I Still Love You"
+  - text: "Here is the recommended movie, Title: After"
+  - text: "Here is the recommended movie, Title: Always Be My Maybe"
+  
+  utter_fantasy:
+  - text: "Here is the recommended movie, Title: Kung Fu Hustle"
+  - text: "Here is the recommended movie, Title: Happy as Lazzaro"  
+  - text: "Here is the recommended movie, Title: How to Train Your Dragon 2"
+  - text: "Here is the recommended movie, Title: A Whisker Away"
+  - text: "Here is the recommended movie, Title: The Little Prince"
+  
+  utter_sport:
+  - text: "Here is the recommended movie, Title: Glory Road"
+  - text: "Here is the recommended movie, Title: Prefontaine"  
+  - text: "Here is the recommended movie, Title: He Got Game"
+  - text: "Here is the recommended movie, Title: The Waterboy"
+  - text: "Here is the recommended movie, Title: Goon"
+  
+  utter_thriller:
+  - text: "Here is the recommended movie, Title: El Camino: A Breaking Bad Movie"
+  - text: "Here is the recommended movie, Title: Bird Bo"  
+  - text: "Here is the recommended movie, Title: Cam"
+  - text: "Here is the recommended movie, Title: Velvet Buzzsaw"
+  - text: "Here is the recommended movie, Title: I Care A Lot"
+
+  utter_goodbye:
+  - text: "Enjoy the streaming!"
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
