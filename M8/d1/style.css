@@ -1,0 +1,16 @@
+h1{
+text-align: center;
+}
+
+.bloglink{
+color:red;
+}
+
+a:nth-of-type(2){
+color:blue;
+}
+
+a:nth-of-type(3){
+color:green;
+}
+
