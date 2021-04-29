@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translation</title>
+    <style>
+      h2 {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align: center">English-German Translator</h2>
+    <form
+      style="text-align: center"
+      action="http://127.0.0.1:5000/translate"
+      method="post"
+    >
+      <label for="translate_text">Enter text</label>
+      <input type="text" name="translate_text" id="translate_text" />
+      <input type="submit" value="submit" />
+      <p class="">{{ response }}</p>
+    </form>
+  </body>
+</html>
