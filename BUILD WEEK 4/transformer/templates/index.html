@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../mystyle.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Translation</title>
+  </head>
+  <body>
+    <h2 style="text-align: center">English-German Translator</h2>
+    <form
+      style="text-align: center"
+      action="http://127.0.0.1:5000/translate"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <label for="translate_text">Enter the English text</label>
+      <input
+        style="font-size: 10pt; padding: 0 0 50px 0"
+        type="box"
+        name="translate_text"
+        id="translate_text"
+      />
+      <br />
+      <br />
+      <label for="translate_text">Wanna translate an audio file?</label>
+      <input type="file" id="myFile" name="filename" />
+      <br />
+      <br />
+      <input type="submit" value="submit" />
+      <br />
+      <br />
+      <h4>English Text:</h4>
+      <p class="">{{ response1 }}</p>
+      <h4>German Text:</h4>
+      <p class="">{{ response2 }}</p>
+    </form>
+  </body>
+</html>
