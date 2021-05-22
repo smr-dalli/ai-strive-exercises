@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="../mystyle.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>number_plate</title>
+  </head>
+  <body>
+    <h2 style="text-align: center">AI for tolls</h2>
+    <form
+      style="text-align: center"
+      action="http://127.0.0.1:5000/number_plate"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <label for="number plate extraction">Upload the image</label>
+      <input type="file" id="myFile" name="filename" />
+      <br />
+      <input type="submit" value="submit" />
+
+      <p class="">{{ response }}</p>
+    </form>
+  </body>
+</html>
