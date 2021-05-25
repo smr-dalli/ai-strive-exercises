@@ -1,4 +1,20 @@
 from flask import Flask, render_template, request
+import sqlite3
+import os
+
+import io
+import sys
+import json
+from functools import lru_cache
+
+from pathlib import Path
+
+import torchvision.transforms as transforms
+from PIL import Image
+import torchvision
+import torch
+
+import logging
 
 import cv2 
 import re
@@ -29,6 +45,7 @@ class LicensePlateDetector:
         orig = cv2.imread(img_path)
         self.img = orig
         img = orig.copy()
+
         height, width, _ = img.shape
         blob = cv2.dnn.blobFromImage(img, 1 / 255, (416, 416), (0, 0, 0), swapRB=True, crop=False)
         self.net.setInput(blob)
@@ -66,7 +83,18 @@ class LicensePlateDetector:
                 cv2.putText(img, label + ' ' + confidence, (x, y + 20), self.font, 3, (255, 255, 255), 3)
         self.fig_image = img
         self.coordinates = (x, y, w, h)
-        return
+        lpd.crop_plate()
+        cv2.imwrite('static/detected.jpg',self.fig_image)
+
+        cropped_image = cv2.cvtColor(lpd.roi_image, cv2.COLOR_BGR2RGB)
+
+        extracted_text = pytesseract.image_to_string(cropped_image, 
+                                  config = f'--psm 8 --oem 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+
+        processed_text = re.findall("[A-Z0-9]",extracted_text)
+        text = ''.join(processed_text)
+    
+        return text
     
     
     def crop_plate(self):
@@ -82,34 +110,34 @@ lpd = LicensePlateDetector(
 )
 
 # Detect license plate
-lpd.detect('database_images/20180402113123_NumberPlate_Swift.jpg')
+#lpd.detect('database_images/20180402113123_NumberPlate_Swift.jpg')
 
-# Plot original image with rectangle around the plate
-plt.figure(figsize=(24, 24))
-plt.imshow(cv2.cvtColor(lpd.fig_image, cv2.COLOR_BGR2RGB))
-plt.savefig('saved_images/detected.jpg')
-plt.show()
+# # Plot original image with rectangle around the plate
+# plt.figure(figsize=(24, 24))
+# plt.imshow(cv2.cvtColor(lpd.fig_image, cv2.COLOR_BGR2RGB))
+# plt.savefig('saved_images/detected.jpg')
+# plt.show()
 
-# Crop plate and show cropped plate
-lpd.crop_plate()
-plt.figure(figsize=(10, 4))
-#kernel = np.ones((3,3),np.uint8)
-cropped_image = cv2.cvtColor(lpd.roi_image, cv2.COLOR_BGR2RGB)
-#_,thresh = cv2.threshold(cropped_image,127,255,cv2.THRESH_BINARY_INV)
-#gaussian_blur = cv2.GaussianBlur(thresh,(3,3),0)
-#canny = cv2.Canny(gaussian_blur,100,200)
-#dilation = cv2.dilate(canny,kernel)
+# # Crop plate and show cropped plate
+# lpd.crop_plate()
+# plt.figure(figsize=(10, 4))
+# #kernel = np.ones((3,3),np.uint8)
+# cropped_image = cv2.cvtColor(lpd.roi_image, cv2.COLOR_BGR2RGB)
+# #_,thresh = cv2.threshold(cropped_image,127,255,cv2.THRESH_BINARY_INV)
+# #gaussian_blur = cv2.GaussianBlur(thresh,(3,3),0)
+# #canny = cv2.Canny(gaussian_blur,100,200)
+# #dilation = cv2.dilate(canny,kernel)
 
-plt.imshow(cropped_image)
+# plt.imshow(cropped_image)
 
 
 # Display the text extracted from the car plate
-extracted_text = pytesseract.image_to_string(cropped_image, 
-                                  config = f'--psm 8 --oem 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+# extracted_text = pytesseract.image_to_string(cropped_image, 
+#                                   config = f'--psm 8 --oem 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
 
-processed_text = re.findall("[A-Z0-9]",extracted_text)
-text = ''.join(processed_text)
-print(text)
+# processed_text = re.findall("[A-Z0-9]",extracted_text)
+# text = ''.join(processed_text)
+# print(text)
 
 
 # # Testing all PSM values
@@ -118,62 +146,96 @@ print(text)
 #     print(pytesseract.image_to_string(cropped_image, 
 #                                       config = f'--psm {i} --oem 3 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'))
 
-import sqlite3
+# import sqlite3
 
-conn = sqlite3.connect('database/licence_plates.db')
+# conn = sqlite3.connect('database/licence_plates.db')
 
-c = conn.cursor()
+# c = conn.cursor()
 
-#c.execute('CREATE TABLE vehicle_number_plate (id integer,plates text)')
+# #c.execute('CREATE TABLE vehicle_number_plate (id integer,plates text)')
 
-#c.execute("INSERT INTO licence_plate VALUES (1,'CZ20FSE')")
+# #c.execute("INSERT INTO licence_plate VALUES (1,'CZ20FSE')")
 
-# number_plate = [
-#     (1,'DL8CAF5030'),
-#     (2,'HR26DK8337'),
-#     (3,'YX38590'),
-#     (4,'KWI3MXR'),
-#     (5,'COVID19'),
-#     (6,'KA05NB1786'),
-#     (7,'MH20DV2366'),
-#     ]
-# c.executemany("INSERT INTO vehicle_number_plate VALUES (?,?)", number_plate)
-c.execute(" SELECT * FROM vehicle_number_plate"); 
-#c.execute(" SELECT * FROM vehicle_number_plate where @text LIKE '%'+plates+'%' "); 
-#c.execute(" SELECT * FROM vehicle_number_plate where find_in_set(text, plates)"); 
-result = c.fetchall()
-input_value = text
-temp = False
-for i in result:
-    if input_value in i:
-        temp = True
+# # number_plate = [
+# #     (1,'DL8CAF5030'),
+# #     (2,'HR26DK8337'),
+# #     (3,'YX38590'),
+# #     (4,'KWI3MXR'),
+# #     (5,'COVID19'),
+# #     (6,'KA05NB1786'),
+# #     (7,'MH20DV2366'),
+# #     ]
+# # c.executemany("INSERT INTO vehicle_number_plate VALUES (?,?)", number_plate)
+# c.execute(" SELECT * FROM vehicle_number_plate"); 
+# #c.execute(" SELECT * FROM vehicle_number_plate where @text LIKE '%'+plates+'%' "); 
+# #c.execute(" SELECT * FROM vehicle_number_plate where find_in_set(text, plates)"); 
+# result = c.fetchall()
+# input_value = text
+# temp = False
+# for i in result:
+#     if input_value in i:
+#         temp = True
 
-if temp:
-    x = print('The licence plate is active and allowed to travel on roads.')
-else:
-    x = print('The licence plate is inactive and it is time to renewal.')
+# if temp:
+#     x = print('The licence plate is active and allowed to travel on roads.')
+# else:
+#     x = print('The licence plate is inactive and it is time to renewal.')
 
-conn.commit()
+# conn.commit()
 
-conn.close()
+# conn.close()
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    #os.remove(file) for file in os.listdir('static/')
+    os.remove('static/detected.jpg')
+    return render_template('index.html' )
 
 @app.route('/number_plate',methods=['POST'])
 def number_plate():
 
     if request.method == 'POST':
         files = request.files['file_1']
-        img = files.read()
-        x = lpd.detect('database_images/img')
+        img_bytes = files.read()
+
+        image = Image.open(io.BytesIO(img_bytes))
+        image.save('temp/image.jpg')
+        
+        # print(type(img))
+        extracted_text = lpd.detect('temp/image.jpg')
+        # # Plot original image with rectangle around the plate
+        # plt.figure(figsize=(24, 24))
+        #user_image= plt.imshow(cv2.cvtColor(lpd.fig_image, cv2.COLOR_BGR2RGB))
+
+        conn = sqlite3.connect('database/licence_plates.db')
+
+        c = conn.cursor()
+        c.execute(" SELECT * FROM vehicle_number_plate"); 
+        final_statement = ''
+        result = c.fetchall()
+        input_value = extracted_text
+        temp = False
+        for i in result:
+            if input_value in i:
+                temp = True
+
+        if temp:
+            print('The licence plate is active and allowed to travel on roads.')
+            final_statement ='The licence plate is active and allowed to travel on roads.'
+        else:
+            print('The licence plate is inactive and it is time to renewal.')
+            final_statement ='The licence plate is inactive and it is time to renewal.'
+
+        conn.commit()
+
+        conn.close()
 
 
 
-    return render_template('number_plate.html',response=x)
+
+    return render_template('index.html',image_path = 'static/detected.jpg',number_palte_text = extracted_text,final_statement = final_statement)
 
 
 
