@@ -1,0 +1,13 @@
+/* body {
+  background-image: url("../istockphoto-922547712-612x612.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+} */
+body {
+  font-family: "Montserrat", sans-serif;
+}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+.navbar-brand {
+  font-size: 24px !important;
+}
