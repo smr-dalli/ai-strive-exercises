@@ -2,21 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../mystyle.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>number_plate</title>
   </head>
   <body>
     <h2 style="text-align: center">AI for tolls</h2>
-    <form
+    <!-- <form
       style="text-align: center"
       action="/number_plate"
       method="POST"
       enctype="multipart/form-data"
-    >
+    > -->
       <!-- <input type="file" id="number_plate" name="file_1" />
       <input class="" type="submit" /> -->
-      <div class="row">
+      <div style="text-align: center" class="row">
         <h4>Licence plate detection</h4>
         <img src="{{ image_path }}" alt="User Image" />
         <br />
