@@ -1,1 +1,1 @@
-# ai-strive-exercises
+# AI-strive-exercises
