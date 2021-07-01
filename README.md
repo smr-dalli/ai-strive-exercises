@@ -12,5 +12,5 @@
 ## Module 7 - Natural Processing
 ## Module 8 - Full Stack Deep Learning
 ## Build Week 4
-## Capstone Project
+## Capstone Project - AI on Toll Plaza
 
