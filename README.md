@@ -1,4 +1,4 @@
-# AI-strive-exercises
+# AI Strive Exercises
 ### This repo has projects and tasks assigned by strive AI bootcamp.
 ## Module 1 - Python
 ## Module 2 - Maths
