@@ -8,7 +8,7 @@
 ## Build Week 2
 ## Module 5 - Deep Learning
 ## Module 6 - Computer Vision
-## Build Week 3
+## Build Week  3
 ## Module 7 - Natural Processing
 ## Module 8 - Full Stack Deep Learning
 ## Build Week 4
