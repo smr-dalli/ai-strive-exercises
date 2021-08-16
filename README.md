@@ -5,7 +5,7 @@
 ## Build Week   2
 ## Module 3 - Machine Learning
 ## Module 4 - Feature Engineering
-## Build Week   2
+## Build Week  2
 ## Module 5 - Deep Learning
 ## Module 6 - Computer Vision
 ## Build Week  3
