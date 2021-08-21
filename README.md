@@ -1,7 +1,7 @@
 # AI Strive Exercises
 ### This repo has Build week projects and daily tasks assigned by strive AI bootcamp
 ## Module 1 - Python
-## Module 2 - Mathematics
+## Module 2 - Math
 ## Build Week   2
 ## Module 3 - Machine Learning
 ## Module 4 - Feature Engineering
