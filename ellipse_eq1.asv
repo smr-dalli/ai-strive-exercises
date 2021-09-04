@@ -1,0 +1,37 @@
+clear all
+close all
+clc
+%% -11.18	20.73	-14.63	4.679	0.4053
+
+S6_1_middle = importdata('S6_1_Middle.txt');
+
+% % getting rid off of the tails
+QSMiddle = cumtrapz(S6_1_middle(:,1),S6_1_middle(:,2));
+[~,IminS08Middle] = min(QSMiddle);
+[~,ImaxS08Middle] = max(QSMiddle);
+
+% % Removing tails from the information of the integral
+SMiddle_tails = S6_1_middle(IminS08Middle:ImaxS08Middle,:);
+normalised = normalize(SMiddle_tails,'range');
+[poly,gof] = fit(normalised(:,1),normalised(:,2),'poly4');
+poly
+gof
+
+% figure
+% plot(normalised(:,1),normalised(:,2));
+% 
+
+% b =  -14.46 ;
+% c =   4.582;
+% d =   2.409  ;
+% % % a =1; b=1;c=1;
+% 
+% figure
+% x = linspace(-1,1,1000);
+% l = x.^2 + b;
+% y = nthroot((d.*(1-(l./c))),2);
+% plot(x,y)
+% xlabel('X');
+% ylabel('a*x.^2 + b*x + c')
+% axis off
+% set(gca,'YDir','reverse')
